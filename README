@@ -1,0 +1,32 @@
+
+JeeNodeJR 0.1
+
+objective
+  . implements JeeNode protocal on msp430 low-end devices
+  . provide basic subset of JeeNode library apis
+  . be able to talk to original JeeNodes (AVR) 
+
+known differences w/ JeeNode (AVR)
+  . default rf module bitrate is 4.8kbps instead of 49.2kbps
+  . does not support "easy" transmission functions yet
+  . does not support eeprom config r/w yet
+
+0.1 features (2011-09-12)
+  . provides the following rfm12b functions via rfm.h
+    . rf12_initialize()
+	. rf12_canSend()
+	. rf12_sendStart()
+	. rf12_recvDone()
+	. plus some other internal functions
+  . provides the following uart functions via uart.h
+    . uart_init()
+	. uart_getc()
+	. uart_putc()
+	. plus some other, see source code
+  . communicates w/ rfm12b via spi
+  . choice of h/w spi or bitbang spi
+  . tested on msp430g2211/g2231/f2012/g2452
+  . should work on most low-end msp430 devices
+
+
+
