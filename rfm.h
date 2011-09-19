@@ -170,7 +170,7 @@ uint16_t _crc16_update(uint16_t crc, uint8_t a) {
 }
 
 
-#ifdef USE_SPI
+#ifdef USE_HW_SPI
 
 
 //______________________________________________________________________
