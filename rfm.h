@@ -1,5 +1,10 @@
 
 /*
+2011.09.19
+. jeelabsandy advice typo on h/w spi for G2553 devices
+  . should use both UCB0TXBUF, UCB0RXBUF register for spi
+  . changed accordingly
+
    rfm12b layout, this is the smd version, rectangular box is the crystal
 
                SDO + o--+     o + nSEL
@@ -180,9 +185,9 @@ uint16_t rf12_xfer(uint16_t c) {
 	P1OUT &= ~(SEL);
 
 #ifdef UCB0RXBUF
-    UCB0RXBUF = c>>8;
+    UCB0TXBUF = c>>8;
     while ((UCB0STAT & UCBUSY) == 0x01);
-    res = UCB0RXBUF<<8;
+    res = UCB0TXBUF<<8;
     while ((UCB0STAT & UCBUSY) == 0x01);
     UCB0RXBUF = c;
     while ((UCB0STAT & UCBUSY) == 0x01);
