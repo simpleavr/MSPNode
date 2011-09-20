@@ -1,3 +1,6 @@
+// RFM12B driver implementation
+// 2009-02-09 <jcw@equi4.com> http://opensource.org/licenses/mit-license.php
+// 2011-09-19 <simpleavr@gmail.com> http://opensource.org/licenses/mit-license.php
 
 /*
 2011.09.19
@@ -414,6 +417,8 @@ void rf12_sendStart(uint8_t hdr, const void* ptr, uint8_t len) {
     rf12_sendStart_det(hdr);
 }
 
+//interrupt(PORT1_VECTOR) PORT1_ISR(void)
+// *** this pin interrupt must be setup and called from main program
 //______________________________________________________________________
 void rf12_interrupt(void) {
     // a transfer of 2x 16 bits @ 2 MHz over SPI takes 2x 8 us inside this ISR

@@ -1,5 +1,9 @@
 /* Originally version from:
 http://www.msp430launchpad.com/2010/08/half-duplex-software-uart-on-launchpad.html
+http://blog.hodgepig.org/2010/09/09/573
+2011-09-19 <simpleavr@gmail.com>
+
+
 */
 #define TXD BIT1 // TXD on P1.1
 #define RXD BIT2 // RXD on P1.2
@@ -97,6 +101,7 @@ void uart_puthex16(uint16_t h) {
 
 //______________________________________________________________________
 //interrupt(PORT1_VECTOR) PORT1_ISR(void)
+// *** this pin interrupt must be setup and called from main program
 void uart_recv_int(void) {
         //TAR = 0;
     isReceiving = 1;

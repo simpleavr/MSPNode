@@ -1,6 +1,15 @@
 
 JeeNodeJR 0.1
 
+credits
+  . based on jcw's <jcw@equi4.com> JeeNode work and protocol
+  . uart implementation based on work from njc and hodgepig
+	http://www.msp430launchpad.com/2010/08/half-duplex-software-uart-on-launchpad.html
+	http://blog.hodgepig.org/2010/09/09/573
+  . rfm12b bitbang spi based on simpleavr's spectrum analyzer
+    http://www.simpleavr.com/msp430-projects/rfm12b-spectrum-analyzer
+  . JeeLabsAndy provides msp430g2553 h/w/ spi code
+
 objective
   . implements JeeNode protocal on msp430 low-end devices
   . provide basic subset of JeeNode library apis

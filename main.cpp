@@ -41,6 +41,8 @@
 
  uart.h
 
+ . based on http://www.msp430launchpad.com/2010/08/half-duplex-software-uart-on-launchpad.html
+ . based on http://blog.hodgepig.org/2010/09/09/573
  . code "stolen" from www.msp430launchpad.com
  . massaged at bit for
    . resolve issues when receiving consecutive characters
@@ -48,6 +50,7 @@
 
  rfm.h
 
+ . based on 2009-02-09 <jcw@equi4.com> http://opensource.org/licenses/mit-license.php
  . see header for pin assignment, etc.
  . implement basic jeeNode functions
  . * receive buffer is 32 instead of 64 (in original jeeNode)
@@ -75,6 +78,8 @@
  * change your rf12_init() for correct module, i.e. 433,866,915,etc
 
  different MCU clock tested
+ . set FCPU to 1000000, 4000000, 8000000, or 12000000
+ . ** requires calibrated values in flash **
  . i setup a 1Mhz FCPU slave and
  . have host run at 1,4,8,12Mhz to talk to this 1Mhz slave successfully
  . tried 16Mhz not working, even uart not working, may be my chip is not calibrated well
