@@ -29,7 +29,7 @@
 	#define SDI     BIT7		// to SDO
 	#define SDO     BIT6		// to SDI
 	#define SEL     BIT4		// to nSEL
-	#define IRQ		BIT3		// to nINT
+	#define IRQ		BIT3		// to nIRQ
 
 #else
 
@@ -40,13 +40,13 @@
 	#define SDI 	BIT3		// to SDO
 	#define SDO 	BIT6		// to SDI
 	#define SEL 	BIT5		// to nSel
-	#define IRQ		BIT4		// to nINT
+	#define IRQ		BIT4		// to nIRQ
 	*/
 	#define SCK     BIT5		// to SCK
 	#define SDI     BIT7		// to SDO
 	#define SDO     BIT6		// to SDI
 	#define SEL     BIT4		// to nSEL
-	#define IRQ		BIT3		// to nINT
+	#define IRQ		BIT3		// to nIRQ
 
 #endif
 
