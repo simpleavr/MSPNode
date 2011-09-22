@@ -90,8 +90,15 @@
 
 
 //______________________________________________________________________
-#define FCPU    1000000
-#define USEC    (FCPU/1000000)
+#define ___use_cal_clk(x)	\
+BCSCTL1 = CALBC1_##x##MHZ;	\
+DCOCTL  = CALDCO_##x##MHZ;
+
+#define __use_cal_clk(x)	___use_cal_clk(x)
+
+#define MHZ     1			// can be 1,4,8,12
+#define FCPU    MHZ*1000000
+#define USEC    MHZ
 
 //______________________________________________________________________
 #ifdef MSP430		// tells us we are using mspgcc
@@ -142,30 +149,12 @@ int main(void) {
 
         WDTCTL = WDTPW + WDTHOLD; // Stop WDT
 
-#if FCPU == 1000000
-        BCSCTL1 = CALBC1_1MHZ; // Set range
-        DCOCTL  = CALDCO_1MHZ; // SMCLK = DCO = 1MHz
-#endif
-
-#if FCPU == 4000000
+#if MHZ == 4
         BCSCTL1 = CALBC1_8MHZ | DIVA_1;
         DCOCTL  = CALDCO_8MHZ;
         BCSCTL2 |= DIVM_1 | DIVS_1;
-#endif
-
-#if FCPU == 8000000
-        BCSCTL1 = CALBC1_8MHZ;
-        DCOCTL  = CALDCO_8MHZ;
-#endif
-
-#if FCPU == 12000000
-        BCSCTL1 = CALBC1_12MHZ;
-        DCOCTL  = CALDCO_12MHZ;
-#endif
-
-#if FCPU == 16000000
-        BCSCTL1 = CALBC1_16MHZ;
-        DCOCTL  = CALDCO_16MHZ;
+#else
+		__use_cal_clk(MHZ);
 #endif
 
         _BIC_SR(GIE);

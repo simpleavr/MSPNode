@@ -183,11 +183,10 @@ uint16_t _crc16_update(uint16_t crc, uint8_t a) {
 
 //______________________________________________________________________
 uint16_t rf12_xfer(uint16_t c) {
+#ifdef UCB0RXBUF
 	uint16_t res;
-
 	P1OUT &= ~(SEL);
 
-#ifdef UCB0RXBUF
     UCB0TXBUF = c>>8;
     while ((UCB0STAT & UCBUSY) == 0x01);
     res = UCB0TXBUF<<8;
@@ -195,24 +194,21 @@ uint16_t rf12_xfer(uint16_t c) {
     UCB0RXBUF = c;
     while ((UCB0STAT & UCBUSY) == 0x01);
     res |= UCB0RXBUF;
-#else
-    USISRL = c>>8;
-    USICTL1 &= ~USIIFG;
-    USICNT = 8;
-
-    while ((USICTL1 & USIIFG) != 0x01);
-    res = USISRL<<8;
-
-    USISRL = c;
-    USICTL1 &= ~USIIFG;
-    USICNT = 8;
-
-    while ((USICTL1 & USIIFG) != 0x01);
-    res |= USISRL;
-#endif
 
 	P1OUT |= (SEL);
     return res;
+#else
+	// 1880-1844=36byte saved
+	P1OUT &= ~(SEL);
+    USISR = c;
+    USICTL1 &= ~USIIFG;
+    USICNT = USI16B|16;
+
+    while ((USICTL1 & USIIFG) != 0x01);
+	P1OUT |= (SEL);
+    return USISR;
+#endif
+
 }
 
 //______________________________________________________________________

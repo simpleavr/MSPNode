@@ -20,7 +20,12 @@ known differences w/ JeeNode (AVR)
   . does not support "easy" transmission functions yet
   . does not support eeprom config r/w yet
 
-0.1 features (2011-09-12)
+(2011-09-22)
+  . reduce 32 bytes by adopting to 16bit h/w spi, thanks snowzach
+  . also confirms 2231/2211/2452 h/w spi works on 1,4,8,12 Mhz clock
+  . use cleaner macro to set dco clock from calibrated values
+
+(2011-09-12)
   . provides the following rfm12b functions via rfm.h
     . rf12_initialize()
 	. rf12_canSend()
