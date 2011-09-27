@@ -189,9 +189,9 @@ uint16_t rf12_xfer(uint16_t c) {
 
     UCB0TXBUF = c>>8;
     while ((UCB0STAT & UCBUSY) == 0x01);
-    res = UCB0TXBUF<<8;
+    res = UCB0RXBUF<<8;
     while ((UCB0STAT & UCBUSY) == 0x01);
-    UCB0RXBUF = c;
+    UCB0TXBUF = c;
     while ((UCB0STAT & UCBUSY) == 0x01);
     res |= UCB0RXBUF;
 
