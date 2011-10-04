@@ -325,6 +325,19 @@ uint16_t rf12_control(uint16_t cmd) {
 }
 
 //______________________________________________________________________
+void rf12_sleep (char n) {
+    if (n < 0)
+        rf12_control(RF_IDLE_MODE);
+    else {
+        rf12_control(RF_WAKEUP_TIMER | 0x0500 | n);
+        rf12_control(RF_SLEEP_MODE);
+        if (n > 0)
+            rf12_control(RF_WAKEUP_MODE);
+    }
+    rxstate = TXIDLE;
+}
+
+//______________________________________________________________________
 static void rf12_recvStart () {
     rxfill = rf12_len = 0;
     rf12_crc = ~0;

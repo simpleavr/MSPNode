@@ -241,6 +241,10 @@ int main(void) {
                         needToSend = 1;
                 }//if
 
+				// not used, here only because i tried to compile them
+				//rf12_sleep(0);
+				//rf12_sleep(-1);
+
         }//while
 }
 
